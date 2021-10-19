@@ -41,7 +41,8 @@ dependencies {
 	implementation group: 'com.google.firebase', name: 'firebase-admin', version: '6.8.1'
 	// https://mvnrepository.com/artifact/com.google.firebase/firebase-messaging
 	implementation group: 'com.google.firebase', name: 'firebase-messaging', version: '22.0.0'
-
+	// https://mvnrepository.com/artifact/org.python/jython
+	implementation group: 'org.python', name: 'jython', version: '2.7.2'
 
 }
 
