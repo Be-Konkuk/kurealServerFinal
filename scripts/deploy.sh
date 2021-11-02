@@ -1,5 +1,5 @@
 #!/bin/bash
-BUILD_JAR=$(ls /home/ec2-user/kureal_server/build/libs/*.war)
+BUILD_JAR=$(ls /home/ec2-user/kureal_server/build/libs/kureal-0.0.1-SNAPSHOT.war)
 JAR_NAME=$(basename $BUILD_JAR)
 echo "> build 파일명: $JAR_NAME" >> /home/ec2-user/kureal_server/deploy.log
 
