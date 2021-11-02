@@ -23,10 +23,20 @@ jobs:
         MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
         MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
       run: echo mysql.driver=\"$MYSQL_DRIVER\" mysql.url=\"$MYSQL_URL\" mysql.username=\"$MYSQL_USERNAME\" mysql.password=\"$MYSQL_PASSWORD\" > ./src/main/resources/application.properties
-#       run: echo mysql.url=\"$MYSQL_URL\" > ./src/main/resources/application.properties
-#       run: echo mysql.username=\"$MYSQL_USERNAME\" > ./src/main/resources/application.properties
-#       run: echo mysql.password=\"$MYSQL_PASSWORD\" > ./src/main/resources/application.properties
-        
+    
+    - name: Setup MySQL 
+      env:
+        MYSQL_DRIVER: ${{ secrets.MYSQL_DRIVER }}
+        MYSQL_URL: ${{ secrets.MYSQL_URL }}
+        MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
+        MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+      uses: samin/mysql-action@v1 
+      with: 
+        character set server: 'utf8' 
+        mysql database: 'kureal' 
+        mysql user: ${{ secrets.MYSQL_USERNAME }} 
+        mysql password: ${{ secrets.MYSQL_PASSWORD }} 
+
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       
