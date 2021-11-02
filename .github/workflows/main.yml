@@ -16,6 +16,17 @@ jobs:
       with:
         java-version: 11
         
+     - name: Decode MYSQL
+      env:
+        MYSQL_DRIVER: ${{ secrets.MYSQL_DRIVER }}
+        MYSQL_URL: ${{ secrets.MYSQL_URL }}
+        MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
+        MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+      run: echo mysql.driver=\"$MYSQL_DRIVER\" > ./src/main/resources/application.properties
+      run: echo mysql.url=\"$MYSQL_URL\" > ./src/main/resources/application.properties
+      run: echo mysql.username=\"$MYSQL_USERNAME\" > ./src/main/resources/application.properties
+      run: echo mysql.password=\"$MYSQL_PASSWORD\" > ./src/main/resources/application.properties
+        
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       
