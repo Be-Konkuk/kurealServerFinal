@@ -22,7 +22,7 @@ jobs:
         MYSQL_URL: ${{ secrets.MYSQL_URL }}
         MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
         MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-      run: echo -e "mysql.driver=\"$MYSQL_DRIVER\"\n mysql.url=\"$MYSQL_URL\"\n mysql.username=\"$MYSQL_USERNAME\"\n mysql.password=\"$MYSQL_PASSWORD\"" > ./src/main/resources/application.properties
+      run: echo -e "mysql.driver=\"$MYSQL_DRIVER\"\nmysql.url=\"$MYSQL_URL\"\nmysql.username=\"$MYSQL_USERNAME\"\nmysql.password=\"$MYSQL_PASSWORD\"" > ./src/main/resources/application.properties
 
     
     - name: Setup MySQL 
