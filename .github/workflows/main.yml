@@ -22,20 +22,21 @@ jobs:
         MYSQL_URL: ${{ secrets.MYSQL_URL }}
         MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
         MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-      run: echo -e "mysql.driver=\"$MYSQL_DRIVER\"\n mysql.url=\"$MYSQL_URL\"\n mysql.username=\"$MYSQL_USERNAME\"\n mysql.password=\"$MYSQL_PASSWORD\"" > ./src/main/resources/application.properties
+      run: echo -e "mysql.driver=\"$MYSQL_DRIVER\"\nmysql.url=\"$MYSQL_URL\"\nmysql.username=\"$MYSQL_USERNAME\"\nmysql.password=\"$MYSQL_PASSWORD\"" > ./src/main/resources/application.properties
+
     
-    - name: Setup MySQL 
-      env:
-        MYSQL_DRIVER: ${{ secrets.MYSQL_DRIVER }}
-        MYSQL_URL: ${{ secrets.MYSQL_URL }}
-        MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
-        MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-      uses: samin/mysql-action@v1 
-      with: 
-        character set server: 'utf8' 
-        mysql database: 'kureal' 
-        mysql user: ${{ secrets.MYSQL_USERNAME }} 
-        mysql password: ${{ secrets.MYSQL_PASSWORD }} 
+#     - name: Setup MySQL 
+#       env:
+#         MYSQL_DRIVER: ${{ secrets.MYSQL_DRIVER }}
+#         MYSQL_URL: ${{ secrets.MYSQL_URL }}
+#         MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
+#         MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+#       uses: samin/mysql-action@v1 
+#       with: 
+#         character set server: 'utf8' 
+#         mysql database: 'kureal' 
+#         mysql user: ${{ secrets.MYSQL_USERNAME }} 
+#         mysql password: ${{ secrets.MYSQL_PASSWORD }} 
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
