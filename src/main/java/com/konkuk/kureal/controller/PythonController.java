@@ -42,6 +42,8 @@ public class PythonController {
     @GetMapping(path = "/test")
     @ApiOperation(value = "정상작동테스트", notes = "서버 정상 작동 테스트")
     public String serverTest() {
+        //s3주소가 파라미터로 넘어오면 -> flask 서버 돌릴거자나
+        //그거에 넘겨서 return 값 오는지 확인
         return "테스트완료";
     }
 }

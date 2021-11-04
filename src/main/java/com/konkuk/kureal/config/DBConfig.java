@@ -16,20 +16,25 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
 public class DBConfig implements TransactionManagementConfigurer{
-    @Value("${mysql.driver}")
+    //@Value("${mysql.driver}")
+    @Value("com.mysql.jdbc.Driver")
     private String driverClassName;
 
-    @Value("${mysql.url}")
+    //@Value("${mysql.url}")
+    @Value("jdbc:mysql://localhost:3306/kureal")
     private String databaseUrl;
 
-    @Value("${mysql.username}")
+    //@Value("${mysql.username}")
+    @Value("root")
     private String databaseUserName;
 
-    @Value("${mysql.password}")
+    //@Value("${mysql.password}")
+    @Value("Kureal2018!!")
     private String databasePassword;
 
     @Bean
     public DataSource dataSource() {
+        System.out.println("HEY!! "+driverClassName+","+databaseUrl+","+databaseUserName+","+databasePassword);
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName(driverClassName);
         dataSource.setUrl(databaseUrl);

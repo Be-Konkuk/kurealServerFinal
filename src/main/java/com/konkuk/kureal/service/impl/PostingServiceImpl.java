@@ -6,6 +6,8 @@ import com.konkuk.kureal.service.PostingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PostingServiceImpl implements PostingService {
     private PostingDao postingDao;
@@ -25,5 +27,10 @@ public class PostingServiceImpl implements PostingService {
     public Postings selectOneArticleWithPk(int pk) {
         Postings posting = postingDao.selectOneArticleWithPk(pk);
         return posting;
+    }
+
+    public List<Postings> selectArticleWithBuilding(int building){
+        List<Postings> postingsList = postingDao.selectArticleWithBuilding(building);
+        return postingsList;
     }
 }

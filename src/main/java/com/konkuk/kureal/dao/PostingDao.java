@@ -35,4 +35,10 @@ public class PostingDao {
         params.put("pk",pk);
         return jdbc.queryForObject(PostingDaoSqls.SELECT_ONE_ARTICLE_WITH_PK,params,postingRowMapper);
     }
+
+    public List<Postings> selectArticleWithBuilding(int building) {
+        Map<String, Integer> params = new HashMap<>();
+        params.put("building",building);
+        return jdbc.query(PostingDaoSqls.SELECT_ARTICLES_WITH_BUILDING, params, postingRowMapper);
+    }
 }
