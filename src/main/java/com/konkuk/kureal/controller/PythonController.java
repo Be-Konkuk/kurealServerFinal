@@ -1,6 +1,8 @@
 package com.konkuk.kureal.controller;
 
+import com.konkuk.kureal.dto.Postings;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.python.core.PyFunction;
 import org.python.core.PyInteger;
 import org.python.core.PyObject;
@@ -35,5 +37,11 @@ public class PythonController {
         System.out.println(pyobj.toString());
 
         return pyobj.toString();
+    }
+
+    @GetMapping(path = "/test")
+    @ApiOperation(value = "정상작동테스트", notes = "서버 정상 작동 테스트")
+    public String serverTest() {
+        return "테스트완료";
     }
 }
