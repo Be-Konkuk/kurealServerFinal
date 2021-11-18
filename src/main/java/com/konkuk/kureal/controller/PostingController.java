@@ -73,7 +73,9 @@ public class PostingController {
         //플라스크 돌려서 건물 번호(building) get하기
         int building = -1;
         //photo/JPEG_20211014_113822_6724216538930263291.jpg
-        building = getBuildingWithS3Url(s3Url);
+        String[] s3Arr = s3Url.split("/");
+
+        building = getBuildingWithS3Url("photo/"+s3Arr[5]);
 
         //해당 빌딩 글 조회
         List<Postings> postingResult = postingService.selectArticleWithBuilding(building);

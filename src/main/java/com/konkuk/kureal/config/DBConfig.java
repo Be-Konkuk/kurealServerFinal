@@ -29,7 +29,7 @@ public class DBConfig implements TransactionManagementConfigurer{
     private String databaseUserName;
 
     //@Value("${mysql.password}")
-    @Value("Kureal2018!!")
+    @Value("Kureal2018!")
     private String databasePassword;
 
     @Bean
