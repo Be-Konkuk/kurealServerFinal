@@ -48,6 +48,13 @@ public class PostingController {
     @PostMapping
     @ApiOperation(value = "포스팅 등록", notes = "사진과 article을 이용하여 글을 데이터베이스에 저장합니다.(pk값 불필요)")
     public ResponseEntity<? extends BasicResponse> insertArticleWithPostingData(@RequestBody Postings posting_data) {
+        int building = -1;
+        String s3Url = posting_data.getPhoto().toString(); // kureal/ 뒤에 자르기
+        String[] s3Arr = s3Url.split("/");
+
+        building = getBuildingWithS3Url("photo/"+s3Arr[5]);
+        posting_data.setBuilding(building);
+
         int insertResult = postingService.insertArticleWithPostingData(posting_data);
         return ResponseEntity.status(HttpStatus.OK).body(new SuccessResponse(200, "posting 등록 성공")); //성공 response
     }
@@ -66,8 +73,20 @@ public class PostingController {
         //플라스크 돌려서 건물 번호(building) get하기
         int building = -1;
         //photo/JPEG_20211014_113822_6724216538930263291.jpg
+        building = getBuildingWithS3Url(s3Url);
+
+        //해당 빌딩 글 조회
+        List<Postings> postingResult = postingService.selectArticleWithBuilding(building);
+        if(postingResult.size() < 1){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("조회 정보가 존재하지 않습니다. 이미지 URl주소가 올바른지 확인해주세요")); //실패 response
+        }
+        return ResponseEntity.ok().body(new CommonResponse<List<Postings>>(postingResult)); //성공 data response
+    }
+
+    private int getBuildingWithS3Url(String s3Url){
+        int building = -1;
         try {
-            String url = "http://192.168.0.24:8090/imageMatching?img_path="; 	// 외부 API URL
+            String url = "http://15.164.48.206:8090/imageMatching?img_path="; 	// 외부 API URL
             url += s3Url;
 
             CloseableHttpClient client = HttpClientBuilder.create().build();
@@ -96,12 +115,6 @@ public class PostingController {
         catch(Exception e) {
             System.out.println(e.toString());
         }
-
-        //해당 빌딩 글 조회
-        List<Postings> postingResult = postingService.selectArticleWithBuilding(building);
-        if(postingResult.size() < 1){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("조회 정보가 존재하지 않습니다. 이미지 URl주소가 올바른지 확인해주세요")); //실패 response
-        }
-        return ResponseEntity.ok().body(new CommonResponse<List<Postings>>(postingResult)); //성공 data response
+        return building;
     }
 }

@@ -13,4 +13,5 @@ public class Postings {
     private String tag;
     private double latitude;
     private double longitude;
+    private int building;
 }
