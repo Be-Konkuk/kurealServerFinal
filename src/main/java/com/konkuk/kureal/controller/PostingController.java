@@ -88,7 +88,9 @@ public class PostingController {
     private int getBuildingWithS3Url(String s3Url){
         int building = -1;
         try {
-            String url = "http://15.164.48.206:8090/imageMatching?img_path="; 	// 외부 API URL
+            //String url = "http://15.164.48.206:8090/imageMatching?img_path="; 	// 외부 API URL
+            String url = "http://ec2-15-164-48-206.ap-northeast-2.compute.amazonaws.com:8090/imageMatching?img_path="; 	// 외부 API URL
+
             url += s3Url;
 
             CloseableHttpClient client = HttpClientBuilder.create().build();
